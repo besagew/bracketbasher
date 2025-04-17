@@ -8,7 +8,6 @@ import com.bracketbasher.Model.Node;
 import com.bracketbasher.View.BracketDisplay;
 
 import javafx.application.Application;
-import javafx.application.Application;
 import javafx.stage.Stage;
 
 /**
@@ -95,6 +94,8 @@ public final class App extends Application {
         //BracketDisplay bd = new BracketDisplay(primaryStage, bl);
         // String[] csv = PromptForCSV(input);
         // Node[] bracketDisplay = ConvertStringsToHalfArray(csv);
+
+        // This is a test list i'm using
         Node[] bracketList =  new Node[]{
             null,
             null,
@@ -115,10 +116,7 @@ public final class App extends Application {
     // This function should prompt the user for a CSV, and return it converted into an array of strings. i.e:
     // rhubarb,lichen -> {"rhubarb","lichen"}
     // this function should NOT allow for an odd number of values to be inputted. It causes a huge headache so just don't let people do it
-    // rhubarb,lichen -> {"rhubarb","lichen"}
-    // this function should NOT allow for an odd number of values to be inputted. It causes a huge headache so just don't let people do it
     public static String[] PromptForCSV(Scanner input){
-        //String[] csvList = new String[]  The length of this will be equal to the # of commas in the input plus one :)
         //String[] csvList = new String[]  The length of this will be equal to the # of commas in the input plus one :)
     }
 
@@ -140,7 +138,7 @@ public final class App extends Application {
             Node choice2 = bracketList[i-1];
             Node winner = prompt(input, choice1, choice2);
             System.out.println("Inserting " + winner + " at " + ((i-1)/2));
-            bracketList[(i-1)/2] = winner;
+            bracketList[(i-1)/2] = new Node(winner.getData);
         }
         for (int nodeIndex = 1; nodeIndex < bracketList.length; nodeIndex++){
             Node node = bracketList[nodeIndex];
