@@ -8,13 +8,9 @@ import com.bracketbasher.Model.Node;
 import com.bracketbasher.View.BracketDisplay;
 
 import javafx.application.Application;
-import javafx.application.Application;
 import javafx.stage.Stage;
 
-/**
- * Hello world!
- */
-public final class App extends Application {
+
 public final class App extends Application {
     private static Scanner input = new Scanner(System.in);
 
@@ -112,14 +108,41 @@ public final class App extends Application {
         Node[] bl = FillBracketList(bracketList);
         //BracketDisplay bd = new BracketDisplay(primaryStage, bl);
     }
+
     // This function should prompt the user for a CSV, and return it converted into an array of strings. i.e:
     // rhubarb,lichen -> {"rhubarb","lichen"}
     // this function should NOT allow for an odd number of values to be inputted. It causes a huge headache so just don't let people do it
     // rhubarb,lichen -> {"rhubarb","lichen"}
     // this function should NOT allow for an odd number of values to be inputted. It causes a huge headache so just don't let people do it
     public static String[] PromptForCSV(Scanner input){
-        //String[] csvList = new String[]  The length of this will be equal to the # of commas in the input plus one :)
-        //String[] csvList = new String[]  The length of this will be equal to the # of commas in the input plus one :)
+        String[] values = null;
+
+        while(true) {
+            System.out.println("Enter an even length list of items separated by a comma");
+            String line = input.nextLine().trim();
+            
+            // splitting and trimming each one to add to values
+            values = line.split(",");
+            for (int i = 0 ; i < values.length; i++) {
+                values[i] = values[i].trim();
+            }
+
+            // checking if odd or empty for edges
+            if (values.length % 2 != 0) {
+                System.out.println("Invalid: Odd number of values entered");
+            }
+            else if (values.length == 0) {
+                System.out.println("Empty input");
+            } 
+            else {
+                break;
+            }
+
+
+        }
+
+        //yippie
+        return values;
     }
 
     // Construct a Node array twice the length of values where the second half (n/2 -> n) is the values
@@ -127,8 +150,14 @@ public final class App extends Application {
     public static Node[] Nodeify(String[] values){
         // This function should convert all the strings into nodes, then make that subarry of nodes the last
         // half of the returned array
+
+        // cretaing array with size double that of the input to represent a binary tree
         Node[] returnList = new Node[values.length * 2];
 
+        // fill the second half with the user vals
+        for (int i = 0; i < values.length;i++) {
+            returnList[values.length + i] = new Node(values[i]);
+        }
         return returnList;
     }
 
