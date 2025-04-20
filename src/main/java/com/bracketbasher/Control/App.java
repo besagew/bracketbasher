@@ -10,13 +10,6 @@ import com.bracketbasher.View.BracketDisplay;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-<<<<<<< HEAD
-
-=======
-/**
- * Hello world!
- */
->>>>>>> fa0cbdf772f3554ba45c125d492ce01a11ee4d30
 public final class App extends Application {
     private static Scanner input = new Scanner(System.in);
 
@@ -74,7 +67,7 @@ public final class App extends Application {
     // rhubarb,lichen -> {"rhubarb","lichen"}
     // this function should NOT allow for an odd number of values to be inputted. It causes a huge headache so just don't let people do it
     public static String[] PromptForCSV(Scanner input){
-<<<<<<< HEAD
+
         String[] values = null;
 
         while(true) {
@@ -101,11 +94,8 @@ public final class App extends Application {
 
         }
 
-        //yippie
         return values;
-=======
         //String[] csvList = new String[]  The length of this will be equal to the # of commas in the input plus one :)
->>>>>>> fa0cbdf772f3554ba45c125d492ce01a11ee4d30
     }
 
     // Construct a Node array twice the length of values where the second half (n/2 -> n) is the values
