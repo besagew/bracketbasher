@@ -10,36 +10,15 @@ import com.bracketbasher.View.BracketDisplay;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+<<<<<<< HEAD
 
+=======
+/**
+ * Hello world!
+ */
+>>>>>>> fa0cbdf772f3554ba45c125d492ce01a11ee4d30
 public final class App extends Application {
     private static Scanner input = new Scanner(System.in);
-
-    private static Node prompt(Scanner input, Node choice1Node, Node choice2Node){
-        String response = "";
-        Node returnChoice = null;
-
-        // If no other node is provided, we have a winner by default
-        if (choice2Node == null) {
-            return choice1Node;
-        } else if (choice1Node == null) {
-            return choice2Node;
-        }
-        // Repeatedly prompt for input if response isn't a or b
-        while (!(response.equals("a") || response.equals("b"))){
-            System.out.println("Which wins?");
-            System.out.println(choice1Node.getData() + " / " + choice2Node.getData());
-            System.out.println("A - " + choice1Node.getData() + " B - " + choice2Node.getData());
-            response = input.nextLine().toLowerCase();
-            if (response.equals("a")) {
-                returnChoice = choice1Node;
-            } else if (response.equals("b")){
-                returnChoice = choice2Node;
-            }
-        }
-        return returnChoice;
-    }
-    @Override
-    public void start(Stage primaryStage) {
 
     private static Node prompt(Scanner input, Node choice1Node, Node choice2Node){
         String response = "";
@@ -89,32 +68,13 @@ public final class App extends Application {
         };
         Node[] bl = FillBracketList(bracketList);
         //BracketDisplay bd = new BracketDisplay(primaryStage, bl);
-        // String[] csv = PromptForCSV(input);
-        // Node[] bracketDisplay = ConvertStringsToHalfArray(csv);
-        Node[] bracketList =  new Node[]{
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            new Node("rhubarb"),
-            new Node("lichen"),
-            new Node("moss"),
-            new Node("cliff"),
-            new Node("radiator"),
-            new Node("hexagon"),
-        };
-        Node[] bl = FillBracketList(bracketList);
-        //BracketDisplay bd = new BracketDisplay(primaryStage, bl);
     }
 
     // This function should prompt the user for a CSV, and return it converted into an array of strings. i.e:
     // rhubarb,lichen -> {"rhubarb","lichen"}
     // this function should NOT allow for an odd number of values to be inputted. It causes a huge headache so just don't let people do it
-    // rhubarb,lichen -> {"rhubarb","lichen"}
-    // this function should NOT allow for an odd number of values to be inputted. It causes a huge headache so just don't let people do it
     public static String[] PromptForCSV(Scanner input){
+<<<<<<< HEAD
         String[] values = null;
 
         while(true) {
@@ -143,6 +103,9 @@ public final class App extends Application {
 
         //yippie
         return values;
+=======
+        //String[] csvList = new String[]  The length of this will be equal to the # of commas in the input plus one :)
+>>>>>>> fa0cbdf772f3554ba45c125d492ce01a11ee4d30
     }
 
     // Construct a Node array twice the length of values where the second half (n/2 -> n) is the values
@@ -169,7 +132,7 @@ public final class App extends Application {
             Node choice2 = bracketList[i-1];
             Node winner = prompt(input, choice1, choice2);
             System.out.println("Inserting " + winner + " at " + ((i-1)/2));
-            bracketList[(i-1)/2] = winner;
+            bracketList[(i-1)/2] = new Node(winner.getData());
         }
         for (int nodeIndex = 1; nodeIndex < bracketList.length; nodeIndex++){
             Node node = bracketList[nodeIndex];
