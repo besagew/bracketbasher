@@ -60,7 +60,7 @@ public final class App extends Application {
             new Node("hexagon"),
         };
         Node[] bl = FillBracketList(bracketList);
-        //BracketDisplay bd = new BracketDisplay(primaryStage, bl);
+        BracketDisplay bd = new BracketDisplay(primaryStage, bl);
     }
 
     // This function should prompt the user for a CSV, and return it converted into an array of strings. i.e:
