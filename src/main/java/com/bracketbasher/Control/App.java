@@ -43,10 +43,10 @@ public final class App extends Application {
         // Once entered, prompt them with pairs of choices and ask them if they prefer choice 1 or 2
         // Recursively do this until the entire list is filled
         // Once list is filled, create a new BracketDisplay with the list
-        // String[] csv = PromptForCSV(input);
-        // Node[] bracketDisplay = ConvertStringsToHalfArray(csv);
+        String[] csv = PromptForCSV(input);
+        Node[] bracketList = Nodeify(csv);
+        /*
         Node[] bracketList =  new Node[]{
-            null,
             null,
             null,
             null,
@@ -56,9 +56,10 @@ public final class App extends Application {
             new Node("lichen"),
             new Node("moss"),
             new Node("cliff"),
-            new Node("radiator"),
             new Node("hexagon"),
+            new Node("calx"),
         };
+        */
         Node[] bl = FillBracketList(bracketList);
         BracketDisplay bd = new BracketDisplay(primaryStage, bl);
     }
@@ -98,24 +99,24 @@ public final class App extends Application {
         //String[] csvList = new String[]  The length of this will be equal to the # of commas in the input plus one :)
     }
 
-    // Construct a Node array twice the length of values where the second half (n/2 -> n) is the values
+    // Construct a Node array of length 2n-1 of values where the second half is the values
     // {"rhubarb","lichen","cliffs"} --> {[],[],[],["rhubarb"],["lichen"],["cliffs"]}
     public static Node[] Nodeify(String[] values){
         // This function should convert all the strings into nodes, then make that subarry of nodes the last
         // half of the returned array
 
         // cretaing array with size double that of the input to represent a binary tree
-        Node[] returnList = new Node[values.length * 2];
+        Node[] returnList = new Node[(values.length * 2)-1];
 
         // fill the second half with the user vals
-        for (int i = 0; i < values.length;i++) {
-            returnList[values.length + i] = new Node(values[i]);
+        int startIndex = returnList.length / 2;
+        for (int i = 0; i < values.length; i++) {
+            returnList[startIndex + i] = new Node(values[i]);
         }
         return returnList;
     }
 
     // After filling half of bracketlist, fill out the rest by asking user questions
-    // Calvin can probably do this. Hopefully
     public static Node[] FillBracketList(Node[] bracketList){
         for (int i = (bracketList.length-1); i > 0; i = i - 2){
             Node choice1 = bracketList[i];
@@ -123,13 +124,13 @@ public final class App extends Application {
             Node winner = prompt(input, choice1, choice2);
             System.out.println("Inserting " + winner + " at " + ((i-1)/2));
             bracketList[(i-1)/2] = new Node(winner.getData());
-        }
-        for (int nodeIndex = 1; nodeIndex < bracketList.length; nodeIndex++){
-            Node node = bracketList[nodeIndex];
-            if (node != null) {
-                System.out.println("[" + nodeIndex + "]: " + node.getData());
-            } else {
-                System.out.println("[" + nodeIndex + "]: null");
+            for (int nodeIndex = 0; nodeIndex < bracketList.length; nodeIndex++){
+                Node node = bracketList[nodeIndex];
+                if (node != null) {
+                    System.out.println("[" + nodeIndex + "]: " + node.getData());
+                } else {
+                    System.out.println("[" + nodeIndex + "]: null");
+                }
             }
         }
         return bracketList;
